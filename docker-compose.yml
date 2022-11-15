@@ -5,7 +5,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    image: docker-registry2dc.platform3solutions.com/a360/a360-gateway-service:someTag
+    image: sathish10218/cicd_project:someTag
     expose:
         - 7000
     ports:
