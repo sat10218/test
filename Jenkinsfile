@@ -28,3 +28,4 @@ chmod +x mvnw
      }
     }
   }
+}
