@@ -1,4 +1,4 @@
-FROM docker-registry2dc.platform3solutions.com/a360/alpine-java:11
+FROM sathish10218/alpine-java:11
 
 VOLUME /tmp
 
