@@ -1,4 +1,4 @@
-FROM sathish10218/alpine-java:11
+FROM sathish10218/alpine-java:latest
 
 VOLUME /tmp
 
