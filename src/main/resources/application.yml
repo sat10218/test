@@ -1,0 +1,66 @@
+server:
+  port: ${a360.gateway.port:7000}
+  ssl:
+    enabled: false
+    key-store-type: PKCS12
+    key-store: archon.p12
+    key-store-password: p3solutions
+    key-alias: archon
+    trust-store: archon.p12
+    trust-store-password: p3solutions
+    trust-store-type: PKCS12
+    ciphers: ECDHE-RSA-AES256-GCM-SHA384,ECDHE-RSA-AES256-SHA384,ECDHE-RSA-AES256-SHA,ECDHE-RSA-AES128-GCM-SHA256,ECDHE-RSA-AES128-SHA256,ECDHE-RSA-AES128-SHA
+    enabled-protocols: TLSv1.2
+
+spring:
+  application:
+    name: a360-gateway-service
+  cloud:
+    config:
+      uri:
+        - http://localhost:9100
+      enabled: false
+    gateway:
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins: "[/**]"
+      discovery:
+        locator:
+          enabled: true
+          lowerCaseServiceId: true
+      routes:
+        - id: a360-migrator-service
+          uri: lb://a360-migrator-service
+          predicates:
+            - Path=/v1/migrator-service/api/**
+
+        - id: a360-core-service
+          uri: lb://a360-core-service
+          predicates:
+            - Path=/v1/core-service/api/**
+
+        - id: a360-metalyzer-service
+          uri: lb://a360-metalyzer-service
+          predicates:
+            - Path=/v1/metalyzer-service/api/**
+
+        - id: a360-job-service
+          uri: lb://a360-job-service
+          predicates:
+            - Path=/v1/job-service/api/**
+
+eureka:
+  instance:
+    hostname: ${discovery.server.host:localhost}
+    instance-id: ${eureka.instance.ip-address}:${spring.application.name}:${spring.application.instance_id:${server.port}}
+    prefer-ip-address: true
+    ip-address: ${eureka.client.host:localhost}
+  client:
+    serviceUrl:
+      defaultZone: ${protocol.type:http}://${discovery.server.host:localhost}:${discovery.server.port:7001}/eureka/
+
+
+springdoc:
+  api-docs:
+    path: /api-docs

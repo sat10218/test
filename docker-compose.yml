@@ -1,0 +1,19 @@
+version: '3.7'
+services: 
+  a360_gateway_service:
+    container_name: a360_gateway_service
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: docker-registry2dc.platform3solutions.com/a360/a360-gateway-service:someTag
+    expose:
+        - 7000
+    ports:
+        - 7000:7000
+    networks:
+        - a360-network
+    env_file: 
+      - gateway.env
+networks:
+    a360-network:
+        driver: bridge
