@@ -22,10 +22,5 @@ chmod +x mvnw
             docker push sathish10218/cicd_project:latest'''
        }
      }
-    post{
-      success { 
-        emailext body: 'Email sent from jenkins', recipientProviders: [buildUser()], subject: 'Jenkins-Build status', to: 'msathishkumar027@gmail.com'
-     }
-    }
   }
 }
