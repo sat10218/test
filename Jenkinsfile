@@ -26,5 +26,6 @@ chmod +x mvnw
     success { 
       emailext body: 'Email sent from jenkins', recipientProviders: [buildUser()], subject: 'Jenkins-Build status', to: 'msathishkumar027@gmail.com'
      }
+    }
   }
 }
