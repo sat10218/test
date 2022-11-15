@@ -1,6 +1,21 @@
 pipeline {
   agent any
     stages {
+      stage('PreBuild-Email') {
+           steps {
+               script {
+                   def mailRecipients = 'admin@gmail.com'
+                   def jobName = currentBuild.fullDisplayName
+                   //emailext body: '''${SCRIPT, template="groovy-html.template"}''',
+                   emailext body: '''Hello''',
+                       mimeTye: 'text/html',
+                       subject: "[Jenkins] Started ${jobName}",
+                       to: "${mailRecipients}",
+                       replyTo: "${mailRecipients}",
+                       recipientProviders: [[$class: 'CulpritsRecipientProvider']]
+        }
+    }
+}
      stage('git clone') {
        steps {
          echo 'clone the repo'
