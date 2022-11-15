@@ -4,7 +4,7 @@ pipeline {
       stage('PreBuild-Email') {
            steps {
                script {
-                   def mailRecipients = 'admin@gmail.com'
+                   def mailRecipients = 'msathishkumar027@gmail.com'
                    def jobName = currentBuild.fullDisplayName
                    //emailext body: '''${SCRIPT, template="groovy-html.template"}''',
                    emailext body: '''Hello''',
