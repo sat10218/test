@@ -1,5 +1,5 @@
 pipeline {
-  agent {node('build-in')} 
+  agent {node('Built-In Node')} 
     stages {
      stage('git clone') {
        steps {
