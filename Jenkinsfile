@@ -1,5 +1,5 @@
 pipeline {
-  agent any
+  agent {node('build-in')} 
     stages {
      stage('git clone') {
        steps {
@@ -16,7 +16,7 @@ chmod +x mvnw
     }
    stage('Docker image') {
     steps {
-      sh '''docker login --username sathish10218 --password Deepika@#199
+      sh '''docker login --username sathish10218 --password Deepika@#1996
             docker build . -t sathish10218/cicd_project
             docker tag sathish10218/cicd_project sathish10218/cicd_project:latest
             docker push sathish10218/cicd_project:latest'''
