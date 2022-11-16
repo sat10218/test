@@ -16,7 +16,7 @@ chmod +x mvnw
     }
    stage('Docker image') {
     steps {
-      sh '''docker login --username sathish10218 --password Deepika@#1996
+      sh '''docker login --username sathish10218 --password Deepika@#199
             docker build . -t sathish10218/cicd_project
             docker tag sathish10218/cicd_project sathish10218/cicd_project:latest
             docker push sathish10218/cicd_project:latest'''
